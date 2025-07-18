@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch app/index.js"
+    "dev": "node --watch app/index.js",
+    "db:sync" : "node app/seeding/create.table.js"
   },
   "keywords": [],
   "author": "",
