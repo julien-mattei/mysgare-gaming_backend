@@ -21,17 +21,6 @@ Cover.belongsTo(Game, {
     as: "game"
 });
 
-// Relation One-To-Many between game and boss
-Game.hasMany(Boss, {
-    foreignKey: "game_id",
-    as: "boss"
-})
-
-Boss.belongsTo(Game, {
-    foreignKey: "game_id",
-    as: "game"
-});
-
 // Relation One-To-Many between game and Run
 Game.hasMany(Run, {
     foreignKey: "game_id",
@@ -65,17 +54,6 @@ Trophy.belongsTo(Type, {
     as:"type"
 });
 
-// Relation One-To-Many between run and video 
-Run.hasMany(Video, {
-    foreignKey:"RunId",
-    as:"video"
-});
-
-Video.belongsTo(Run, {
-    foreignKey:"RunId",
-    as:"run"
-});
-
 // Relation Many-To-Many between game and Genre
 Game.belongsToMany(Genre, {
     through: "game_has_genre",
@@ -89,6 +67,21 @@ Genre.belongsToMany(Game, {
     foreignKey: "genre_id",
     otherKey: "game_id",
     as: "game"
+});
+
+// Relation Many-To-Many between game and boss
+Game.belongsToMany(Boss, {
+    through:"game_has_boss",
+    foreignKey: "game_id",
+    otherKey:"boss_id",
+    as: "bossInGame"
+})
+
+Boss.belongsToMany(Game, {
+    through:"game_has_boss",
+    foreignKey: "boss_id",
+    otherKey:"game_id",
+    as: "gameBoss"
 });
 
 // Relation Many-To-Many between run and boss 
