@@ -1,0 +1,12 @@
+### Get all games
+GET http://localhost:3000/api/games
+
+### Get 10 games by page
+GET http://localhost:3000/api/games/paginated?page=1&limit=10
+Accept: application/json
+
+### Get all games
+GET http://localhost:3000/api/games/100
+
+### Get all games
+GET http://localhost:3000/api/games/random
