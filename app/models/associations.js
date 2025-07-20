@@ -8,7 +8,7 @@ import { Trophy } from "./trophy.model.js";
 import { Type } from "./type.model.js";
 import { User } from "./user.model.js";
 import { Video } from "./video.model.js";
-import { Vote } from "./vote.model.js";
+
 
 // Relation One-To-Many between game and cover
 Game.hasMany(Cover, {
@@ -99,19 +99,5 @@ Boss.belongsToMany(Run, {
     as:"runBoss"
 });
 
-// Relation Many-To-Many between user and game
-User.belongsToMany(Game, {
-    through: Vote, 
-    foreignKey: "user_id",
-    otherKey: "game_id",
-    as: "userVoted"
-});
 
-Game.belongsToMany(User, {
-    through: Vote, 
-    foreignKey: "game_id",
-    otherKey: "user_id",
-    as: "voteUser"
-})
-
-export {Game, Cover, Boss, Genre, Run, RunBoss}
+export {Game, Cover, Boss, Genre, Run, RunBoss, User}

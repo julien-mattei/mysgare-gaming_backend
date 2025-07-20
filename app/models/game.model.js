@@ -21,6 +21,16 @@ Game.init(
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
+        },
+        toVoted: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:false
+        },
+        isCurrent: {
+            type:DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:false
         }
     },
     {
