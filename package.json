@@ -8,7 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch app/index.js",
     "db:sync": "node app/seeding/create.table.js",
-    "db:seed": "node app/seeding/seed.tables.js"
+    "db:seed_game": "node app/seeding/seeding.game.js",
+    "db:seed_genre": "node app/seeding/seeding.genre.js",
+    "db:seed_cover": "node app/seeding/seeding.cover.js",
+    "db:seed_boss": "node app/seeding/seeding.boss.js",
+    "db:seed_trophy": "node app/seeding/seeding.trophy.js"
   },
   "keywords": [],
   "author": "",
