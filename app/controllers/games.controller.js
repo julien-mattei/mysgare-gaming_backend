@@ -1,6 +1,6 @@
-import { Game, Cover, Genre } from "../models/associations.js";
+import { Game, Cover, Genre, Run, Boss } from "../models/associations.js";
 import { Sequelize } from "sequelize";
-import { fetchGames, fetchGamesPaginated, fetchOneGame, fetchRandomGames } from "../services/games.services.js";
+import { fetchCurrentGame, fetchGames, fetchGamesPaginated, fetchGamesToVoted, fetchOneGame, fetchRandomGames } from "../services/games.services.js";
 
 export const gamesController = {
     async getAllGames(req,res) {
@@ -41,6 +41,26 @@ export const gamesController = {
     async getRandomGames(req, res) {
         try {
             const gameDatas = await fetchRandomGames();
+            res.status(200).json(gameDatas)
+        } catch (error) {
+            console.log(error);
+            res.status(500).send("Database down")
+        }
+    },
+
+    async getGamesToVoted(req, res) {
+        try {
+            const gameDatas = await fetchGamesToVoted();
+            res.status(200).json(gameDatas)
+        } catch (error) {
+            console.log(error);
+            res.status(500).send("Database down")
+        }
+    },
+
+    async getCurrentGame(req, res){
+        try {
+            const gameDatas = await fetchCurrentGame();
             res.status(200).json(gameDatas)
         } catch (error) {
             console.log(error);

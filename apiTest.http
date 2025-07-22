@@ -10,3 +10,9 @@ GET http://localhost:3000/api/games/100
 
 ### Get all games
 GET http://localhost:3000/api/games/random
+
+### Get all games
+GET http://localhost:3000/api/games/toVoted
+
+### Get all games
+GET http://localhost:3000/api/games/isCurrent
