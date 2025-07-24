@@ -100,4 +100,4 @@ Boss.belongsToMany(Run, {
 });
 
 
-export {Game, Cover, Boss, Genre, Run, RunBoss, User}
+export {Game, Cover, Boss, Genre, Run, RunBoss, User, Trophy, Type}
