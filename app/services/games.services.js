@@ -5,14 +5,14 @@ import { Op, Sequelize } from "sequelize";
 
 export async function fetchGames(){
     const allGames = await Game.findAll({
-        attributes: ["id", "title", "year", "finished"],
+        attributes: ["id", "title"],
         include: [
             {
                 model: Cover,
                 as: "cover",
                 attributes: ["id","name", "url"]
             }
-        ]     
+        ]   
     });
     const nbGames = await Game.count()
     return{allGames, nbGames}

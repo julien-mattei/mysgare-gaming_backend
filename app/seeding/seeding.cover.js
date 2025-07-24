@@ -9,6 +9,8 @@ for(const game of games){
     const game_title = await Game.findOne({
         where : {title: game.titre}
     })
+    console.log(game_title.id)
+
     for(const size of image_sizes){
         await Cover.findOrCreate({
             where: {name: `${game.titre}_${size}`},

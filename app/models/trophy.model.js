@@ -6,7 +6,7 @@ export class Trophy extends Model {}
 Trophy.init(
   {
     title: {
-      type: DataTypes.STRING(100), 
+      type: DataTypes.STRING(250), 
       allowNull: false           
     },
     description : {

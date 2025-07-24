@@ -9,15 +9,21 @@ for(const entry of boss_1_14){
     })
 
     for(const boss of entry.bosses){
-        const boss_info = await Boss.create({
-            name : boss.boss_name,
+        const boss_info = await Boss.findOrCreate({
+            where : {name : boss.boss_name},
+            defaults: {
+                name : boss.boss_name,
                 isMain: boss.main_boss
+            },
+            ignoreDuplicates: true
         })
 
-        await game.addBossInGame(boss_info)
+        await game.addBossInGame(boss_info.id)
     }
 }
 
 console.log("seeding done");
 
 await sequelize.close()
+
+ 
