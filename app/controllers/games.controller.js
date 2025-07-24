@@ -1,6 +1,6 @@
-import { Game, Cover, Genre, Run, Boss } from "../models/associations.js";
+import { Game, Cover, Genre, Run, Boss, Trophy } from "../models/associations.js";
 import { Sequelize } from "sequelize";
-import { fetchCurrentGame, fetchGames, fetchGamesPaginated, fetchGamesToVoted, fetchOneGame, fetchRandomGames } from "../services/games.services.js";
+import { fetchCurrentGame, fetchGames, fetchGamesPaginated, fetchGamesToVoted, fetchGameWithBosses, fetchGameWithTrophies, fetchOneGame, fetchRandomGames } from "../services/games.services.js";
 
 export const gamesController = {
     async getAllGames(req,res) {
@@ -31,6 +31,28 @@ export const gamesController = {
         const {id} = req.params;
         try {
             const gameDatas = await fetchOneGame(id);
+            res.status(200).json(gameDatas)
+        } catch (error) {
+            console.log(error);
+            res.status(500).send("Database down")
+        }
+    },
+
+    async getGameWitheBosses(req,res) {
+        const {id} = req.params;
+        try {
+            const gameDatas = await fetchGameWithBosses(id);
+            res.status(200).json(gameDatas)
+        } catch (error) {
+            console.log(error);
+            res.status(500).send("Database down")
+        }
+    },
+
+    async getGameWithTrohies(req,res) {
+        const {id} = req.params;
+        try {
+            const gameDatas = await fetchGameWithTrophies(id);
             res.status(200).json(gameDatas)
         } catch (error) {
             console.log(error);

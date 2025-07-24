@@ -10,5 +10,6 @@ router.get("/api/games/random", gamesController.getRandomGames)
 router.get("/api/games/toVoted", gamesController.getGamesToVoted)
 router.get("/api/games/isCurrent", gamesController.getCurrentGame)
 router.get("/api/games/:id", gamesController.getOneGame)
-
+router.get("/api/games/:id/boss", gamesController.getGameWitheBosses)
+router.get("/api/games/:id/trophies", gamesController.getGameWithTrohies)
 

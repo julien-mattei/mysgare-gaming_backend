@@ -1,4 +1,4 @@
-import { Game, Cover, Genre, Run, Boss } from "../models/associations.js"
+import { Game, Cover, Genre, Run, Boss, Trophy } from "../models/associations.js"
 import { sequelize } from "../models/db.client.js";
 import { Op, Sequelize } from "sequelize";
 
@@ -91,10 +91,53 @@ export async function fetchOneGame(id) {
         cover_id: game.cover[4].id,
         cover_name: game.cover[4].name,
         cover_url: game.cover[4].url,
-        genre: game.genre
+        genre: game.genre,
     }
 
     return ({gameDetails, nbRuns, nbBoss, nbTrophies})
+}
+
+export async function fetchGameWithBosses(id){
+    const game = await Game.findByPk(id, {
+        attributes: ["id", "title"],
+        include: [
+            {
+                model: Boss,
+                through:{attributes: []},
+                as: "bossInGame",
+                attributes: ["id", "name", "isMain"]
+            }
+        ],
+    });
+
+    const gameDetails = {
+        id : game.id,
+        title: game.title,
+        bosses: game.bossInGame,
+    }
+
+    return gameDetails
+}
+
+export async function fetchGameWithTrophies(id){
+    const game = await Game.findByPk(id, {
+        attributes: ["id", "title"],
+        include: [
+            {
+                model: Trophy,
+                as: "trophy",
+                attributes: ["id", "title", "description", "isObtained"]
+            }
+        ],
+    });
+
+    const gameDetails = {
+        id : game.id,
+        title: game.title,
+        trophies: game.trophy,
+    }
+
+    return gameDetails
 }
 
 export async function fetchRandomGames() {

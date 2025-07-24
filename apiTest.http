@@ -6,7 +6,13 @@ GET http://localhost:3000/api/games/paginated?page=1&limit=10
 Accept: application/json
 
 ### Get game by his id
-GET http://localhost:3000/api/games/100
+GET http://localhost:3000/api/games/21
+
+### Get game with his bosses by his id
+GET http://localhost:3000/api/games/14/boss
+
+### Get game with his trophies by his id
+GET http://localhost:3000/api/games/5/trophies
 
 ### Get 3 games randomly
 GET http://localhost:3000/api/games/random
