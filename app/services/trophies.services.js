@@ -1,0 +1,1 @@
+import { Trophy, Game } from "../models/associations.js";

@@ -6,13 +6,14 @@ import { Op, Sequelize } from "sequelize";
 export async function fetchGames(){
     const allGames = await Game.findAll({
         attributes: ["id", "title"],
-        include: [
+        /*include: [
             {
                 model: Cover,
                 as: "cover",
                 attributes: ["id","name", "url"]
             }
-        ]   
+        ],*/ 
+        order: [['id', 'ASC']]   
     });
     const nbGames = await Game.count()
     return{allGames, nbGames}
@@ -39,7 +40,8 @@ export async function fetchGamesPaginated(page, limit) {
             }
         ],
         offset,
-        limit: limitMax,        
+        limit: limitMax,
+        order: [['id', 'ASC']]        
     })
     const nbGames = await Game.count()
 
@@ -88,13 +90,12 @@ export async function fetchOneGame(id) {
         year: game.year,
         hours_played: game.nb_total_hours,
         finished: game.finished,
-        cover_id: game.cover[4].id,
-        cover_name: game.cover[4].name,
-        cover_url: game.cover[4].url,
+        cover_id: game.cover[3].id,
+        cover_name: game.cover[3].name,
+        cover_url: game.cover[3].url,
         genre: game.genre,
     }
-
-    return ({gameDetails, nbRuns, nbBoss, nbTrophies})
+    return ({... gameDetails, nbRuns, nbBoss, nbTrophies})
 }
 
 export async function fetchGameWithBosses(id){
@@ -115,7 +116,6 @@ export async function fetchGameWithBosses(id){
         title: game.title,
         bosses: game.bossInGame,
     }
-
     return gameDetails
 }
 
@@ -136,7 +136,6 @@ export async function fetchGameWithTrophies(id){
         title: game.title,
         trophies: game.trophy,
     }
-
     return gameDetails
 }
 
@@ -149,7 +148,7 @@ export async function fetchRandomGames() {
         },
         attributes: ["id"],
         order: [Sequelize.literal('random()'),],
-        limit: 3
+        limit: 4
     });
     
     await Game.update(
@@ -167,7 +166,6 @@ export async function fetchRandomGames() {
         where: {id : {[Op.in]: ids}},
         attributes: ["id", "toVoted"]
     })
-    console.log(gamesId)
     return gamesId;
 }
 
@@ -219,7 +217,6 @@ export async function fetchCurrentGame(){
         cover_name: game.cover[2].name,
         cover_url: game.cover[2].url,
     }
-
     return currentGame
 }
 
@@ -237,6 +234,5 @@ export async function deleteGame(id) {
             where : {id}
         }
     ) 
-        
     return game
 }

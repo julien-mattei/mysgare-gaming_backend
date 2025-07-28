@@ -1,7 +1,14 @@
 import 'dotenv/config';
+import fs from 'fs';
+import { generateKeys } from './services/generate.key.js';
 import express from 'express';
 import cors from "cors";
 import { router } from './router.js';
+
+
+if (!fs.existsSync('public.key') || !fs.existsSync('private.key')) {
+    generateKeys(); 
+}
 
 export const app = express ();
 

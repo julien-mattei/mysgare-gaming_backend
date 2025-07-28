@@ -18,7 +18,7 @@ for(const entry of boss_1_14){
             ignoreDuplicates: true
         })
 
-        await game.addBossInGame(boss_info.id)
+        await game.addBossInGame(boss_info[0])
     }
 }
 

@@ -11,11 +11,12 @@ Game.init(
         },
         year: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
         nb_total_hours : {
-            type: DataTypes.TIME,
-            allowNull: true
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            defaultValue: 0
         },
         finished : {
             type: DataTypes.BOOLEAN,
