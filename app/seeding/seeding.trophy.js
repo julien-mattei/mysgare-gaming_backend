@@ -25,7 +25,7 @@ for(const type of types_list){
 }
 
 
-for(const entry of list_trophies_2){
+for(const entry of list_trophies_3){
     const game = await Game.findOne({
             where : {title: entry.title}
         });

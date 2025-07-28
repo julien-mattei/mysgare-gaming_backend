@@ -7,15 +7,18 @@ User.init(
     {
         pseudo: {
           type: DataTypes.STRING(100), 
-          allowNull: false           
+          allowNull: false,
+          unique: true          
         },
         mail: {
             type: DataTypes.TEXT,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         password: {
             type: DataTypes.TEXT,
-            allowNull: true
+            allowNull: true,
+            unique: true
         },
         isActive: {
             type: DataTypes.BOOLEAN,

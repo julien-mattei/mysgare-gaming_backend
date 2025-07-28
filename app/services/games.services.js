@@ -263,19 +263,25 @@ export async function fetchCurrentGame(){
     return currentGame
 }
 
-export async function createGame() {
-
+export async function createGame(title, year) {
+    const newGame = await Game.create({
+        title: title,
+        year: year
+    })
+    
+    return {newGame, message: `Jeu crée avec succès`}
 }
 
-export async function updateGame() {
-
+export async function updateGame(id, endingStatus, currentStatus ) {
+    const gameToUpdate = await Game.findByPk(id);
+    await gameToUpdate.update({
+        finushed: endingStatus,
+        isCurrent: currentStatus
+    })
+    return {message : `Jeu n° ${id} a bien été mis a jour`}
 }
 
 export async function deleteGame(id) {
-    const game = await Game.destroy(
-        {
-            where : {id}
-        }
-    ) 
-    return game
+    await Game.destroy({where : {id}}) 
+    return {message : `Jeu n° ${id} a bien été supprimé`}
 }

@@ -22,3 +22,46 @@ GET http://localhost:3000/api/games/toVoted
 
 ### Get game is played now
 GET http://localhost:3000/api/games/isCurrent
+
+
+### Modify one game
+PATCH http://localhost:3000/api/games/15
+Content-Type: application/json
+
+{
+    "currentStatus" : true
+}
+
+
+### Créer un user
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "pseudo": "mysgare",
+    "mail": "mysgare@gmail.com",
+    "password": "14Fevrier1986*",
+}
+
+
+### connexion d'un user avec son username et son mdp
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "pseudo" : "mysgare",
+    "password" :  "14Fevrier1986*"
+}
+
+### Récupérer un user par son id après sa connexion
+GET http://localhost:3000/api/profil
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzUzNzQxMTYzLCJleHAiOjE3NTM3NDQ3NjN9.k8uQC0I9B8pcMGYiLT5VN6zOJL0G5z7vBHxMtXxr4eJ1klJLAeizmqS7QuxBeezRJyJQXgTWStsRW_5926lUs-tgmL48VLT0u7YqQ2XHSf9a7kngY9wR41N5t43JDnDsumFyOZIJdpkUj5Y-SpmpekA0cg7bLmY_BTdjSgq0LFzMlXciTLcCamGNu0wgE8LWBh2-MpDQ6QZsRv-0emogFUeysuP-Nr1bcphCtPNlC1zXt836MDolbx8hWeRWJxZ6NhwlkS1FBlrsZaz0SY9kPb31fXVeu_jbk6EUTlSCiNSl50qu_3qB_8PECOu2OOjEqSJYKrLUxUXRVyygvvO1rQ
+
+
+### Mettre a jour un user
+PATCH http://localhost:3000/api/users/1
+Content-Type: application/json
+
+{
+    "adminStatus" : true
+}

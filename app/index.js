@@ -4,6 +4,7 @@ import { generateKeys } from './services/generate.key.js';
 import express from 'express';
 import cors from "cors";
 import { router } from './router.js';
+import cookieParser from "cookie-parser";
 
 
 if (!fs.existsSync('public.key') || !fs.existsSync('private.key')) {
@@ -17,6 +18,8 @@ app.use(cors({
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+app.use(cookieParser())
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())

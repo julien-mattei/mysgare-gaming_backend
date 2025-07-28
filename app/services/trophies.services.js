@@ -1,4 +1,5 @@
 import { Trophy } from "../models/associations.js";
+import { sequelize } from "../models/db.client.js";
 
 export async function createTrophy(title, description, game_id, type_id) {
     const newTrophy = await Trophy.create({
@@ -12,11 +13,9 @@ export async function createTrophy(title, description, game_id, type_id) {
 
 export async function updateTrophy(id, status){
     const trophyToUpdate = await Trophy.findByPk(id);
-
     await trophyToUpdate.update({
         isObtained : status,
-        obtention_date: status ? Date() : null
+        obtention_date: status ? new Date() : null
     })
-
-    return trophyToUpdate
+    return {message : `Trophée n° ${id} a bien été mis à jour`}
 }
