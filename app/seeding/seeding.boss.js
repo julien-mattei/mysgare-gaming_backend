@@ -1,9 +1,9 @@
 import 'dotenv/config';
 import { sequelize } from '../models/db.client.js';
-import { boss_1_14 } from '../datas/bossGames.datas.js';
+import { boss_1_15 } from '../datas/bossGames.datas.js';
 import { Boss, Game } from '../models/associations.js';
 
-for(const entry of boss_1_14){
+for(const entry of boss_1_15){
     const game = await Game.findOne({
         where : {title: entry.title}
     })

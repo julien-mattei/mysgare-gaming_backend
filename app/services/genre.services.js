@@ -13,7 +13,3 @@ export async function createGenre(name) {
     });
     return genre
 };
-
-export async function deleteGenre(id){
-    
-}

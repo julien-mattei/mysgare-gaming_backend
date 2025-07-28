@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize";
-import { Game, Cover, Genre, Run, Boss } from "../models/associations.js";
+import { Game, Run, Boss } from "../models/associations.js";
+import { createBoss, updateBoss } from "../services/boss.services.js";
 
 

@@ -1,4 +1,4 @@
-import { Game, Cover, Genre, Run, Boss, Trophy } from "../models/associations.js"
+import { Game, Cover, Genre, Run, Boss, Trophy, Type } from "../models/associations.js"
 import { sequelize } from "../models/db.client.js";
 import { Op, Sequelize } from "sequelize";
 
@@ -100,13 +100,23 @@ export async function fetchOneGame(id) {
 
 export async function fetchGameWithBosses(id){
     const game = await Game.findByPk(id, {
-        attributes: ["id", "title"],
+        attributes: ["id", "title", "year", "nb_total_hours", "finished"],
         include: [
             {
                 model: Boss,
                 through:{attributes: []},
                 as: "bossInGame",
                 attributes: ["id", "name", "isMain"]
+            },{
+                model: Cover,
+                as: "cover",
+                attributes: ["id","name", "url"]
+            },
+            {
+                model: Genre,
+                through:{attributes: []},
+                as: "genre",
+                attributes: ["id", "name"]
             }
         ],
     });
@@ -114,6 +124,13 @@ export async function fetchGameWithBosses(id){
     const gameDetails = {
         id : game.id,
         title: game.title,
+        year: game.year,
+        hours_played: game.nb_total_hours,
+        finished: game.finished,
+        cover_id: game.cover[3].id,
+        cover_name: game.cover[3].name,
+        cover_url: game.cover[3].url,
+        genre: game.genre,
         bosses: game.bossInGame,
     }
     return gameDetails
@@ -121,19 +138,45 @@ export async function fetchGameWithBosses(id){
 
 export async function fetchGameWithTrophies(id){
     const game = await Game.findByPk(id, {
-        attributes: ["id", "title"],
+        attributes: ["id", "title", "year", "nb_total_hours", "finished"],
         include: [
+            {
+                model: Cover,
+                as: "cover",
+                attributes: ["id","name", "url"]
+            },
+            {
+                model: Genre,
+                through:{attributes: []},
+                as: "genre",
+                attributes: ["id", "name"]
+            },
             {
                 model: Trophy,
                 as: "trophy",
-                attributes: ["id", "title", "description", "isObtained"]
-            }
+                attributes: ["id", "title", "description", "isObtained"],
+                include : [
+                    {
+                        model: Type,
+                        as: "type",
+                        attributes: ["id", "name"]
+                    }
+                ]
+            },
+
         ],
     });
 
     const gameDetails = {
         id : game.id,
         title: game.title,
+        year: game.year,
+        hours_played: game.nb_total_hours,
+        finished: game.finished,
+        cover_id: game.cover[3].id,
+        cover_name: game.cover[3].name,
+        cover_url: game.cover[3].url,
+        genre: game.genre,
         trophies: game.trophy,
     }
     return gameDetails

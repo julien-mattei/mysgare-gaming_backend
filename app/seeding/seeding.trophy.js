@@ -2,6 +2,8 @@ import 'dotenv/config';
 import { sequelize } from '../models/db.client.js';
 import { list_trophies_1 } from '../datas/trophies_1.datas.js';
 import { Trophy, Game, Type } from '../models/associations.js';
+import { list_trophies_2 } from '../datas/trophies_2.datas.js';
+import { list_trophies_3 } from '../datas/trophies_3.datas.js';
 
 
 let types_list = [];
@@ -23,7 +25,7 @@ for(const type of types_list){
 }
 
 
-for(const entry of list_trophies_1){
+for(const entry of list_trophies_2){
     const game = await Game.findOne({
             where : {title: entry.title}
         });

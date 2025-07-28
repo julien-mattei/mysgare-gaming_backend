@@ -1,4 +1,4 @@
-export const boss_1_14 = [
+export const boss_1_15 = [
     {
     title: "Nioh 2",
     bosses: [

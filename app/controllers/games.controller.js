@@ -1,4 +1,4 @@
-import { Game, Cover, Genre, Run, Boss, Trophy } from "../models/associations.js";
+import { Game, Cover, Genre, Run, Boss, Trophy, Type } from "../models/associations.js";
 import { Sequelize } from "sequelize";
 import { fetchCurrentGame, fetchGames, fetchGamesPaginated, fetchGamesToVoted, fetchGameWithBosses, fetchGameWithTrophies, fetchOneGame, fetchRandomGames } from "../services/games.services.js";
 

@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { sequelize } from '../models/db.client.js';
 import { Game } from '../models/associations.js';
-import { games } from '../datas/game.datas.js';
+import { games } from '../datas/gamestest.datas.js';
 
 // Seed table game
 for(const game of games){

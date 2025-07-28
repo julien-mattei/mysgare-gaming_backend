@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "node --watch app/index.js",
     "db:sync": "node app/seeding/create.table.js",
     "db:seed_game": "node app/seeding/seeding.game.js",

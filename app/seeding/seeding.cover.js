@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { sequelize } from '../models/db.client.js';
 import { Cover, Game } from '../models/associations.js';
-import { games } from '../datas/game.datas.js';
+import { games } from '../datas/gamestest.datas.js';
 
 const image_sizes = ['thumb', 'cover_big', '720p', '1080p', 'original'];
 
